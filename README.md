@@ -32,6 +32,11 @@ Mi emulador de terminal preferido por su rapidez y simplicidad. ⚡
 - 🔍 **Telescope:** Para encontrar archivos, buscar texto en todo el proyecto (grep) y más.
 - 📂 **Nvim-Tree:** Un explorador de archivos lateral muy amigable y fácil de usar.
 - 💡 **LSP & Mason:** Inteligencia de código integral. Autocompletado, diagnósticos y formato para Web (JS/TS, HTML, Tailwind), C/C++, Rust, Python, Haskell, Markdown (`marksman`), YAML, TOML (`taplo`) y Docker (`hadolint`). ¡Además incluye `ltex` para revisión ortográfica y gramatical avanzada en documentos!
+- 🌳 **Treesitter:** Resaltado de sintaxis moderno, rápido y extremadamente preciso.
+- 🌈 **Lualine:** Barra de estado hermosa y minimalista.
+- 🐙 **Gitsigns & Lazygit:** Integración perfecta con Git. Ve los líneas modificadas al margen y abre la interfaz completa con un solo atajo.
+- ⚡ **Flash:** Navega a cualquier palabra o línea del archivo a la velocidad de la luz.
+- ✅ **Todo-Comments:** Resalta y localiza todos los `TODO`, `FIXME` y `HACK` en tu proyecto.
 - ✨ **Conform:** Para formatear el código automáticamente y mantenerlo siempre impecable.
 - 🚨 **Trouble:** ¡Encuentra y soluciona errores de diagnóstico en tu código en un panel lateral limpio!
 - ⌨️ **Which-Key:** Si alguna vez olvidas un atajo de teclado, ¡este plugin te muestra una pequeña trampa al presionar la tecla líder!
@@ -68,18 +73,18 @@ Si prefieres instalar las herramientas de manera manual antes de correr el scrip
 
 **🍏 Para macOS:**
 ```bash
-brew install stow neovim git zsh bat eza zoxide ripgrep fd fzf openjdk node
+brew install stow neovim git zsh bat eza zoxide ripgrep fd fzf openjdk node lazygit gcc
 ```
 
 **🐧 Para Linux (Ubuntu/Debian):**
 ```bash
 sudo apt update
-sudo apt install -y stow neovim git zsh bat eza zoxide ripgrep fd-find fzf default-jre npm
+sudo apt install -y stow neovim git zsh bat eza zoxide ripgrep fd-find fzf default-jre npm lazygit build-essential
 ```
 
 **🦅 Para Arch Linux:**
 ```bash
-sudo pacman -S stow neovim git zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm
+sudo pacman -S stow neovim git zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm lazygit gcc make
 ```
 
 ---

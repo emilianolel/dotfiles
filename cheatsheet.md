@@ -69,6 +69,32 @@ Este documento recopila todos los atajos de teclado configurados en tu entorno d
 | `K` | Mostrar documentación al posar el cursor sobre una función/variable | Normal |
 | `gd` | Ir a la definición de la función / componente | Normal |
 
+### ⚡ Flash (Navegación Ultrarrápida)
+| Atajo | Acción | Modo |
+|---|---|---|
+| `s` | Saltar a cualquier palabra o carácter visible en pantalla | Normal / Visual |
+| `S` | Selección semántica envolvente (Treesitter) usando Flash | Normal / Visual |
+| `r` | Remote Flash (ejecutar acción en otro rango y regresar) | Operator-pending |
+| `R` | Búsqueda por rango de Treesitter usando Flash | Op-pending / Visual |
+
+### 🐙 Git (Gitsigns & Lazygit)
+| Atajo | Acción | Modo |
+|---|---|---|
+| `<leader>gg` | Abrir **Lazygit** en un panel flotante | Normal |
+| `]h` | Ir al siguiente cambio de Git (Next Hunk) | Normal |
+| `[h` | Ir al cambio anterior de Git (Prev Hunk) | Normal |
+| `<leader>hs` | Preparar cambio (Stage Hunk) | Normal |
+| `<leader>hr` | Revertir cambio local (Reset Hunk) | Normal |
+| `<leader>hp` | Previsualizar diferencias del cambio actual | Normal |
+| `<leader>hb` | Ver quién editó la línea (*Blame*) | Normal |
+| `<leader>hd` | Ver diferencias completas (*Diff this*) | Normal |
+
+### ✅ Todo-Comments
+| Atajo | Acción | Modo |
+|---|---|---|
+| `]t` | Saltar al siguiente comentario `TODO` / `FIXME` / `HACK` | Normal |
+| `[t` | Saltar al comentario anterior | Normal |
+
 ### 🖋️ VimTeX (LaTeX)
 | Atajo | Acción | Modo |
 |---|---|---|

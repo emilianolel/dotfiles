@@ -33,12 +33,12 @@ install_dependencies() {
             exit 1
         fi
         brew update
-        brew install git stow neovim zsh bat eza zoxide ripgrep fd fzf openjdk node
+        brew install git stow neovim zsh bat eza zoxide ripgrep fd fzf openjdk node lazygit gcc
     elif [ "$DISTRO" = "Arch" ]; then
-        sudo pacman -Syu --noconfirm git stow neovim zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm
+        sudo pacman -Syu --noconfirm git stow neovim zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm lazygit gcc make
     elif [ "$DISTRO" = "Debian/Ubuntu" ]; then
         sudo apt update
-        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm
+        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm lazygit build-essential
     else
         echo "⚠️ Sistema no soportado para instalación automática."
         echo "Por favor, instala manualmente: git, stow, neovim, zsh."
