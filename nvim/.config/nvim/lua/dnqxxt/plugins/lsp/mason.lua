@@ -16,6 +16,13 @@ return {
         "pyright",
         "eslint",
         "texlab",
+        "bashls",
+        "clangd",
+        "jsonls",
+        "hls",
+        "rust_analyzer",
+        "sqlls",
+        "terraformls",
       },
     },
     dependencies = {
@@ -44,6 +51,12 @@ return {
         "black", -- python formatter
         "pylint",
         "eslint_d",
+        "shfmt", -- bash formatter
+        "shellcheck", -- bash linter
+        "clang-format", -- c/c++ formatter
+        "fourmolu", -- haskell formatter
+        "sqlfluff", -- sql linter and formatter
+        "tflint", -- terraform linter
       },
     },
     dependencies = {

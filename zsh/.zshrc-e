@@ -112,5 +112,3 @@ export PATH="/Users/dnqxxt/.antigravity/antigravity/bin:$PATH"
 # .zshrc
 autoload -U promptinit; promptinit
 prompt pure
-
-[ -f "/Users/dnqxxt/.ghcup/env" ] && . "/Users/dnqxxt/.ghcup/env" # ghcup-env
