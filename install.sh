@@ -68,6 +68,16 @@ else
     echo "✅ Todas las dependencias están instaladas. Procediendo a enlazar configuraciones..."
 fi
 
+if [ "$DISTRO" = "macOS" ]; then
+    read -p "📝 ¿Deseas instalar el entorno opcional de LaTeX (MacTeX y Skim)? (s/N) " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Ss]$ ]]; then
+        echo "📦 Instalando MacTeX y Skim..."
+        brew install --cask mactex-no-gui skim
+        echo "✅ Entorno de LaTeX instalado. (Deberás reiniciar tu terminal al finalizar el script para cargar los nuevos comandos de TeX)."
+    fi
+fi
+
 # Crear directorios si no existen
 mkdir -p "$HOME/.config"
 

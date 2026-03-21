@@ -35,6 +35,7 @@ Mi emulador de terminal preferido por su rapidez y simplicidad. ⚡
 - ⌨️ **Which-Key:** Si alguna vez olvidas un atajo de teclado, ¡este plugin te muestra una pequeña trampa al presionar la tecla líder!
 - 🚗 **Nvim-Autopairs:** ¡Cierra llaves, paréntesis y comillas automáticamente como por arte de magia! 🪄
 - 🏠 **Alpha:** Un dashboard de inicio bonito cuando abres Neovim sin archivos.
+- 🖋️ **LaTeX (VimTeX, TexLab & LuaSnip):** Entorno premium para escribir documentos matemáticos, compilar al instante y sincronizar tu código con visores PDF como Skim.
 
 ---
 

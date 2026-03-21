@@ -15,6 +15,7 @@ return {
         "prismals",
         "pyright",
         "eslint",
+        "texlab",
       },
     },
     dependencies = {
