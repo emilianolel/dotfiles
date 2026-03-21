@@ -12,7 +12,7 @@ En este repositorio gestiono las configuraciones de mis herramientas favoritas: 
 Mi shell del día a día. Configurado para ser productivo y estar lleno de información útil. 💡
 - **Perfiles:** Limpio, con auto-completado mejorado y gestión inteligente del historial.
 - **Plugins:** `zsh-autosuggestions` y `zsh-syntax-highlighting` para una experiencia interactiva sin fricción (estilo Fish).
-- **Herramientas Modernas:** `fzf` para búsqueda interactiva, `zoxide` (un `cd` más inteligente), `eza` (reemplazo de `ls` con íconos) y `bat` (un `cat` visual con sintaxis).
+- **Herramientas Modernas:** `fzf` + `atuin` para búsqueda interactiva de historial, `zoxide` como reemplazo del `cd` nativo con memoria inteligente, `eza` (reemplazo de `ls` con íconos) y `bat` (un `cat` visual con sintaxis).
 
 ### 👻 Ghostty
 Mi emulador de terminal preferido por su rapidez y simplicidad. ⚡
@@ -22,8 +22,21 @@ Mi emulador de terminal preferido por su rapidez y simplicidad. ⚡
 
 ### 🪟 Tmux
 Multiplexador de terminal configurado para integrarse perfectamente con Ghostty y Neovim. 🔄
-- **Arranque Automático:** Se lanza de forma nativa desde Ghostty para mantener todas tus sesiones guardadas, sin cargar sub-shells de zsh innecesariamente.
-- **Soporte:** Scroll interactivo (mouse) habilitado, y terminfo personalizado a `tmux-256color` + TrueColor (RGB) para preservar exactamente el mismo aspecto de Neovim y el prompt Pure.
+- **Arranque Automático:** Se lanza de forma nativa desde Ghostty para mantener todas tus sesiones guardadas.
+- **Soporte:** Scroll interactivo (mouse) habilitado, `tmux-256color` + TrueColor (RGB) para preservar exactamente el mismo aspecto de Neovim y el prompt Pure.
+
+### ☁️ Stack de Data Engineering (GCP)
+Herramientas especializadas para flujos de trabajo de Data Engineering, diseñadas para el stack de Google Cloud Platform.
+
+**Neovim Plugins:**
+- 🗄️ **vim-dadbod & UI:** Cliente SQL interactivo embebido en Neovim. Conectáte a **BigQuery, PostgreSQL, Cloud SQL** y ejecuta queries con autocompletado de tablas y columnas.
+- 🐞 **nvim-dap & Python:** Debugger visual completo con breakpoints, step-into/over, REPL y panel de variables. Especialmente pensado para Python en **Dataflow, Cloud Functions y Composer**.
+- 🕹️ **Jinja LSP, Docker LSP, Protols:** Soporte de inteligencia de código para templates Jinja2 (dbt, Airflow), Dockerfiles y archivos Protobuf (Pub/Sub, gRPC).
+
+**Herramientas CLI:**
+- ⎈️ **k9s:** TUI interactiva para Kubernetes (**GKE**). Visualiza, gestiona y depura pods en tiempo real.
+- 🚚 **gitmux:** Muestra el estado del repositorio Git (branch, cambios) directamente en la barra de Tmux.
+- 🧠 **atuin:** Historial de comandos inteligente y sincronizado, reemplaza `fzf+Ctrl+R` con búsqueda instantánea.
 
 ### 📝 Neovim
 ¡Mi editor de código principal impulsado por Lua! 🚀 Está configurado para ser un entorno de desarrollo completo.
@@ -78,7 +91,7 @@ Si prefieres instalar las herramientas de manera manual antes de correr el scrip
 
 **🍏 Para macOS:**
 ```bash
-brew install stow neovim git zsh bat eza zoxide ripgrep fd fzf openjdk node lazygit gcc tmux
+brew install stow neovim git zsh bat eza zoxide ripgrep fd fzf openjdk node lazygit gcc tmux k9s gitmux atuin rust
 ```
 
 **🐧 Para Linux (Ubuntu/Debian):**

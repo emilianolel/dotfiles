@@ -116,9 +116,22 @@ prompt pure
 [ -f "/Users/dnqxxt/.ghcup/env" ] && . "/Users/dnqxxt/.ghcup/env" # ghcup-env
 
 # --- Nuevas Herramientas CLI ---
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd cd)"
 eval "$(fzf --zsh 2>/dev/null || fzf --bash 2>/dev/null)" # Atajos útiles de fzf
 alias ls="eza --icons"
 alias ll="eza -la --icons"
 alias cat="bat"
+
+# Atuin: historial inteligente de comandos (reemplaza fzf+Ctrl+R)
+if command -v atuin &>/dev/null; then
+  eval "$(atuin init zsh)"
+fi
+
+# gcloud: autocompletado de la CLI de GCP
+if command -v gcloud &>/dev/null; then
+  GCLOUD_SDK="$(gcloud info --format='value(installation.sdk_root)' 2>/dev/null)"
+  if [ -f "$GCLOUD_SDK/completion.zsh.inc" ]; then
+    source "$GCLOUD_SDK/completion.zsh.inc"
+  fi
+fi
 # -------------------------------

@@ -78,6 +78,22 @@ if [ "$DISTRO" = "macOS" ]; then
     fi
 fi
 
+read -p "☁️ ¿Deseas instalar el stack de Data Engineering / GCP (k9s, atuin, gitmux, rust)? (s/N) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Ss]$ ]]; then
+    echo "📦 Instalando herramientas de Data Engineering y GCP..."
+    if [ "$DISTRO" = "macOS" ]; then
+        brew install k9s gitmux atuin rust
+    elif [ "$DISTRO" = "Arch" ]; then
+        sudo pacman -Syu --noconfirm k9s gitmux atuin rust
+    elif [ "$DISTRO" = "Debian/Ubuntu" ]; then
+        curl -Lo /tmp/k9s.tar.gz "https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz" && tar -xzf /tmp/k9s.tar.gz -C /usr/local/bin k9s
+        curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    fi
+    echo "✅ Stack de Data Engineering instalado. Abre Neovim y usa :MasonInstall jinja-lsp protols dockerls para instalar los LSPs correspondientes."
+fi
+
 # Crear directorios si no existen
 mkdir -p "$HOME/.config"
 

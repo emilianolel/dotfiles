@@ -113,14 +113,14 @@ Este documento recopila todos los atajos de teclado configurados en tu entorno d
 | **FZF** | `Ctrl + R` | Buscar en el historial de comandos de manera interactiva | Terminal |
 | **FZF** | `Ctrl + T` | Buscar archivos en la carpeta actual y pegarlo en la terminal | Terminal |
 | **FZF** | `Alt + C` | Cambiar a un subdirectorio de forma interactiva | Terminal |
-| **Zoxide** | `z <ruta>` | Cambiar a un directorio frecuentemente usado (alternativa de `cd`) | Terminal |
+| **Zoxide** | `cd <ruta>` | Navega directorios inteligentemente (reemplaza el `cd` nativo) | Terminal |
 | **Eza** | `ls` / `ll` | (Alias automáticos) Listar archivos con íconos hermosos y colores | Terminal |
 | **Bat** | `cat <file>` | (Alias automático) Leer texto en consola con sintaxis colorizada | Terminal |
 
 ---
 
 ## 🪟 Tmux (Gestión de Terminales)
-> **Prefijo por defecto**: `Ctrl + B`
+> **Prefijo**: `Ctrl + Space` (mapeado desde el default `Ctrl + B`)
 
 ### Sesiones
 | Atajo | Acción | Modo |
@@ -162,3 +162,42 @@ Este documento recopila todos los atajos de teclado configurados en tu entorno d
 | `Prefijo` + `[` | Entrar al modo de copia/scroll (con el mouse o teclado) | Tmux |
 | `q` | Salir del modo de copia/scroll | Copia |
 
+---
+
+## ☁️ GCP Data Engineering
+
+### 🗄️ vim-dadbod (Cliente SQL)
+| Atajo | Acción | Modo |
+|---|---|---|
+| `<leader>db` | Abrir / Cerrar el explorador de bases de datos | Normal |
+| `Enter` | Ejecutar la query seleccionada o bajo el cursor | Normal |
+
+### 🐞 nvim-dap (Debugger Python)
+| Atajo | Acción | Modo |
+|---|---|---|
+| `<leader>dc` | Iniciar / Continuar la ejecución del debugger | Normal |
+| `<leader>db` | Poner / Quitar un breakpoint en la línea actual | Normal |
+| `<leader>dB` | Poner un breakpoint condicional | Normal |
+| `<leader>do` | Step Over (ejecutar línea sin entrar a función) | Normal |
+| `<leader>di` | Step Into (entrar a la función) | Normal |
+| `<leader>dO` | Step Out (salir de la función actual) | Normal |
+| `<leader>dr` | Abrir REPL interactivo del debugger | Normal |
+| `<leader>dt` | Terminar la sesión de debug | Normal |
+| `<leader>du` | Abrir / Cerrar el panel UI del debugger | Normal |
+
+### ⎈ k9s (Kubernetes / GKE)
+| Atajo | Acción | Modo |
+|---|---|---|
+| `k9s` | Abrir la interfaz interactiva de Kubernetes | Terminal |
+| `:pod` | Ver todos los pods del namespace actual | k9s |
+| `:ns` | Cambiar de namespace | k9s |
+| `l` | Ver logs del pod seleccionado | k9s |
+| `d` | Describir el recurso seleccionado | k9s |
+| `Ctrl + d` | Eliminar el recurso seleccionado | k9s |
+| `/` | Filtrar recursos por nombre | k9s |
+
+### 🧠 atuin (Historial Inteligente)
+| Atajo | Acción | Modo |
+|---|---|---|
+| `Ctrl + R` | Buscar en historial con interfaz interactiva (reemplaza fzf) | Terminal |
+| `Ctrl + ↑` | Navegar hacia el anterior en el historial | Terminal |

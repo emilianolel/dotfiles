@@ -27,6 +27,9 @@ return {
         "yamlls",
         "taplo",
         "ltex",
+        "jinja_lsp",
+        "dockerls",
+        "protols",
       },
     },
     dependencies = {
@@ -62,6 +65,7 @@ return {
         "sqlfluff", -- sql linter and formatter
         "tflint", -- terraform linter
         "hadolint", -- docker linter
+        "sqlfmt",   -- dbt-compatible SQL formatter
       },
     },
     dependencies = {
