@@ -70,9 +70,28 @@ ZSH_THEME=""
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo docker docker-compose z zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git sudo docker docker-compose z zsh-autosuggestions zsh-syntax-highlighting aliases copypath copyfile jsontools python)
 
 source $ZSH/oh-my-zsh.sh
+
+# == Historial Inteligente ==
+HISTSIZE=50000
+SAVEHIST=50000
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt SHARE_HISTORY
+setopt HIST_VERIFY
+
+# == Corrección de Errores de Tipeo ==
+setopt CORRECT
+setopt CORRECT_ALL
+
+# == Completado Mejorado ==
+# Case-insensitive: 'cd desk' → 'Desktop'
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# Mostrar completado con colores
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # User configuration
 
@@ -104,6 +123,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias python=python3
 alias pip=pip3
+
+# == Python Virtual Environments ==
+alias va='source .venv/bin/activate 2>/dev/null || source venv/bin/activate 2>/dev/null'
+alias vd='deactivate'
+alias vmk='python3 -m venv .venv && source .venv/bin/activate'
 
 # Added by Antigravity
 export PATH="/Users/dnqxxt/.antigravity/antigravity/bin:$PATH"

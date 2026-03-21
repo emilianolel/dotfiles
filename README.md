@@ -8,11 +8,15 @@ En este repositorio gestiono las configuraciones de mis herramientas favoritas: 
 
 ## 🛠️ Herramientas y Configuraciones
 
-### 🐚 Zsh
-Mi shell del día a día. Configurado para ser productivo y estar lleno de información útil. 💡
-- **Perfiles:** Limpio, con auto-completado mejorado y gestión inteligente del historial.
-- **Plugins:** `zsh-autosuggestions` y `zsh-syntax-highlighting` para una experiencia interactiva sin fricción (estilo Fish).
-- **Herramientas Modernas:** `fzf` + `atuin` para búsqueda interactiva de historial, `zoxide` como reemplazo del `cd` nativo con memoria inteligente, `eza` (reemplazo de `ls` con íconos) y `bat` (un `cat` visual con sintaxis).
+### 💚 Zsh
+Mi shell del día a día. Configurado para ser extremadamente productivo. 💡
+- **Plugins de Autocompletado:** `zsh-autosuggestions` y `zsh-syntax-highlighting` para una experiencia interactiva sin fricción (estilo Fish Shell). 🐟
+- **Plugins de OMZ:** `aliases` (`als` para listar todos tus aliases), `copypath` y `copyfile` (al clipboard desde la terminal), `jsontools` (formateo de JSON), `python` (shortcuts de entornos virtuales).
+- **Historial Inteligente:** 📜 50,000 entradas, sin duplicados, compartido entre sesiones de Tmux y con verificación antes de ejecutar `!!`.
+- **Corrección de Typos:** `setopt CORRECT` — Zsh sugiere la corrección automáticamente si escribes mal un comando.
+- **Completado Mejorado:** Case-insensitive y con colores (`cd desk` → `Desktop` automático).
+- **Herramientas Modernas:** `fzf` + `atuin` para búsqueda de historial, `zoxide` reemplaza el `cd` nativo con memoria inteligente, `eza` reemplaza `ls` con íconos y `bat` reemplaza `cat` con sintaxis.
+- **Python Venv:** Aliases `vmk` (crear + activar), `va` (activar), `vd` (desactivar) para gestión rápida de entornos virtuales.
 
 ### 👻 Ghostty
 Mi emulador de terminal preferido por su rapidez y simplicidad. ⚡

@@ -105,8 +105,15 @@ cd "$DOTFILES_DIR" || exit
 echo "👻 Enlazando configuración de Ghostty..."
 stow -v -t "$HOME" ghostty
 
-echo "🐚 Enlazando configuración de Zsh..."
+echo "💚 Enlazando configuración de Zsh..."
 stow -v -t "$HOME" zsh
+# La configuración de .zshrc incluye:
+#   - Plugins OMZ: aliases, copypath, copyfile, jsontools, python
+#   - Historial inteligente (50k, sin duplicados, compartido entre sesiones)
+#   - Corrección automática de typos (setopt CORRECT)
+#   - Completado case-insensitive con colores
+#   - Aliases de Python venv: vmk, va, vd
+#   - Herramientas: zoxide (cd), eza (ls), bat (cat), atuin (historial)
 
 echo "📝 Enlazando configuración de Neovim..."
 stow -v -t "$HOME" nvim

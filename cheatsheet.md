@@ -116,6 +116,12 @@ Este documento recopila todos los atajos de teclado configurados en tu entorno d
 | **Zoxide** | `cd <ruta>` | Navega directorios inteligentemente (reemplaza el `cd` nativo) | Terminal |
 | **Eza** | `ls` / `ll` | (Alias automáticos) Listar archivos con íconos hermosos y colores | Terminal |
 | **Bat** | `cat <file>` | (Alias automático) Leer texto en consola con sintaxis colorizada | Terminal |
+| **OMZ** | `als` | Listar todos los aliases activos definidos en el entorno | Terminal |
+| **OMZ** | `copypath` | Copiar el path del directorio actual al clipboard | Terminal |
+| **OMZ** | `copyfile <file>` | Copiar el contenido de un archivo al clipboard | Terminal |
+| **Python Venv** | `vmk` | Crear un entorno virtual `.venv` en la carpeta actual y activarlo | Terminal |
+| **Python Venv** | `va` | Activar el entorno virtual `.venv` o `venv` de la carpeta actual | Terminal |
+| **Python Venv** | `vd` | Desactivar el entorno virtual activo | Terminal |
 
 ---
 
