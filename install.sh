@@ -33,12 +33,12 @@ install_dependencies() {
             exit 1
         fi
         brew update
-        brew install git stow neovim zsh bat eza zoxide ripgrep fd fzf openjdk node lazygit gcc
+        brew install git stow neovim zsh bat eza zoxide ripgrep fd fzf openjdk node lazygit gcc tmux
     elif [ "$DISTRO" = "Arch" ]; then
-        sudo pacman -Syu --noconfirm git stow neovim zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm lazygit gcc make
+        sudo pacman -Syu --noconfirm git stow neovim zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm lazygit gcc make tmux
     elif [ "$DISTRO" = "Debian/Ubuntu" ]; then
         sudo apt update
-        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm lazygit build-essential
+        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm lazygit build-essential tmux
     else
         echo "⚠️ Sistema no soportado para instalación automática."
         echo "Por favor, instala manualmente: git, stow, neovim, zsh."
@@ -48,7 +48,7 @@ install_dependencies() {
 
 # Verificar dependencias
 MISSING_PKGS=0
-for cmd in git stow nvim zsh rg fzf bat eza zoxide; do
+for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux; do
     if ! command -v $cmd &> /dev/null; then
         echo "❌ Faltando: $cmd"
         MISSING_PKGS=1
@@ -95,6 +95,9 @@ stow -v -t "$HOME" zsh
 echo "📝 Enlazando configuración de Neovim..."
 stow -v -t "$HOME" nvim
 
+echo "💻 Enlazando configuración de Tmux..."
+stow -v -t "$HOME" tmux
+
 echo "📦 Instalando plugins de Zsh (zsh-autosuggestions, zsh-syntax-highlighting)..."
 ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
@@ -102,6 +105,11 @@ if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
 fi
 if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting
+fi
+
+echo "📦 Instalando TPM (Tmux Plugin Manager)..."
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
 echo "🎉 ¡Configuración completada con éxito!"

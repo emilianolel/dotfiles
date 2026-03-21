@@ -1,5 +1,6 @@
 # Themes
 font-size = 15
+font-family = JetBrainsMono Nerd Font Mono
 theme = "Monokai Classic"
 adjust-cell-height = 10%
 background-opacity = 0.96
@@ -7,3 +8,7 @@ background-opacity = 0.96
 macos-titlebar-style = transparent
 # background = 1C2021
 # foreground = d4be98
+
+# Auto-start Tmux
+command = /bin/zsh -l -c "tmux new-session -A -s main"
+

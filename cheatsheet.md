@@ -116,3 +116,49 @@ Este documento recopila todos los atajos de teclado configurados en tu entorno d
 | **Zoxide** | `z <ruta>` | Cambiar a un directorio frecuentemente usado (alternativa de `cd`) | Terminal |
 | **Eza** | `ls` / `ll` | (Alias automáticos) Listar archivos con íconos hermosos y colores | Terminal |
 | **Bat** | `cat <file>` | (Alias automático) Leer texto en consola con sintaxis colorizada | Terminal |
+
+---
+
+## 🪟 Tmux (Gestión de Terminales)
+> **Prefijo por defecto**: `Ctrl + B`
+
+### Sesiones
+| Atajo | Acción | Modo |
+|---|---|---|
+| `Prefijo` + `d` | Desconectarse (sesión queda guardada en segundo plano) | Tmux |
+| `Prefijo` + `$` | Renombrar la sesión actual | Tmux |
+| `Prefijo` + `s` | Listar y cambiar sesiones interactivamente | Tmux |
+| `tmux new -s <nombre>` | Crear una nueva sesión con nombre | Terminal |
+| `tmux attach -t <nombre>` | Reconectarse a una sesión existente | Terminal |
+| `tmux ls` | Listar todas las sesiones activas | Terminal |
+| `tmux kill-server` | Matar todas las sesiones y el servidor Tmux | Terminal |
+
+### Ventanas (Pestañas)
+| Atajo | Acción | Modo |
+|---|---|---|
+| `Prefijo` + `c` | Crear una nueva ventana | Tmux |
+| `Prefijo` + `&` | Cerrar la ventana actual | Tmux |
+| `Prefijo` + `,` | Renombrar la ventana actual | Tmux |
+| `Prefijo` + `[0-9]` | Cambiar a la ventana número N | Tmux |
+| `Prefijo` + `n` | Ir a la siguiente ventana | Tmux |
+| `Prefijo` + `p` | Ir a la ventana anterior | Tmux |
+| `Prefijo` + `w` | Listar y cambiar ventanas interactivamente | Tmux |
+
+### Paneles (Splits)
+| Atajo | Acción | Modo |
+|---|---|---|
+| `Prefijo` + `%` | Dividir el panel verticalmente (dos paneles lado a lado) | Tmux |
+| `Prefijo` + `"` | Dividir el panel horizontalmente (dos paneles arriba/abajo) | Tmux |
+| `Prefijo` + `x` | Cerrar el panel actual | Tmux |
+| `Prefijo` + `z` | Alternar zoom (pantalla completa del panel actual) | Tmux |
+| `Prefijo` + `↑ ↓ ← →` | Navegar entre paneles con las flechas | Tmux |
+| `Prefijo` + `{` | Mover el panel hacia la izquierda | Tmux |
+| `Prefijo` + `}` | Mover el panel hacia la derecha | Tmux |
+| `Prefijo` + `q` | Ver números de panel (pulsa el número para saltar) | Tmux |
+
+### Copiar y Scroll
+| Atajo | Acción | Modo |
+|---|---|---|
+| `Prefijo` + `[` | Entrar al modo de copia/scroll (con el mouse o teclado) | Tmux |
+| `q` | Salir del modo de copia/scroll | Copia |
+

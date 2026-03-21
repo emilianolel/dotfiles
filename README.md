@@ -20,6 +20,11 @@ Mi emulador de terminal preferido por su rapidez y simplicidad. ⚡
 - **Tipografía:** 🔤 Tamaño 15
 - **Estética:** ✨ Transparencia ligera (`0.96`) para ver el fondo sin perder el foco en el código, y altura de celdas ajustada (`10%`) para mayor legibilidad. En macOS, la barra de título es transparente para un look más limpio. 🍏
 
+### 🪟 Tmux
+Multiplexador de terminal configurado para integrarse perfectamente con Ghostty y Neovim. 🔄
+- **Arranque Automático:** Se lanza de forma nativa desde Ghostty para mantener todas tus sesiones guardadas, sin cargar sub-shells de zsh innecesariamente.
+- **Soporte:** Scroll interactivo (mouse) habilitado, y terminfo personalizado a `tmux-256color` + TrueColor (RGB) para preservar exactamente el mismo aspecto de Neovim y el prompt Pure.
+
 ### 📝 Neovim
 ¡Mi editor de código principal impulsado por Lua! 🚀 Está configurado para ser un entorno de desarrollo completo.
 
@@ -73,18 +78,18 @@ Si prefieres instalar las herramientas de manera manual antes de correr el scrip
 
 **🍏 Para macOS:**
 ```bash
-brew install stow neovim git zsh bat eza zoxide ripgrep fd fzf openjdk node lazygit gcc
+brew install stow neovim git zsh bat eza zoxide ripgrep fd fzf openjdk node lazygit gcc tmux
 ```
 
 **🐧 Para Linux (Ubuntu/Debian):**
 ```bash
 sudo apt update
-sudo apt install -y stow neovim git zsh bat eza zoxide ripgrep fd-find fzf default-jre npm lazygit build-essential
+sudo apt install -y stow neovim git zsh bat eza zoxide ripgrep fd-find fzf default-jre npm lazygit build-essential tmux
 ```
 
 **🦅 Para Arch Linux:**
 ```bash
-sudo pacman -S stow neovim git zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm lazygit gcc make
+sudo pacman -S stow neovim git zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm lazygit gcc make tmux
 ```
 
 ---
