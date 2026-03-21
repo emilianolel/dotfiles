@@ -33,12 +33,12 @@ install_dependencies() {
             exit 1
         fi
         brew update
-        brew install git stow neovim zsh
+        brew install git stow neovim zsh bat eza zoxide ripgrep fd fzf openjdk node
     elif [ "$DISTRO" = "Arch" ]; then
-        sudo pacman -Syu --noconfirm git stow neovim zsh
+        sudo pacman -Syu --noconfirm git stow neovim zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm
     elif [ "$DISTRO" = "Debian/Ubuntu" ]; then
         sudo apt update
-        sudo apt install -y git stow neovim zsh
+        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm
     else
         echo "⚠️ Sistema no soportado para instalación automática."
         echo "Por favor, instala manualmente: git, stow, neovim, zsh."
@@ -48,7 +48,7 @@ install_dependencies() {
 
 # Verificar dependencias
 MISSING_PKGS=0
-for cmd in git stow nvim zsh; do
+for cmd in git stow nvim zsh rg fzf bat eza zoxide; do
     if ! command -v $cmd &> /dev/null; then
         echo "❌ Faltando: $cmd"
         MISSING_PKGS=1
@@ -94,6 +94,15 @@ stow -v -t "$HOME" zsh
 
 echo "📝 Enlazando configuración de Neovim..."
 stow -v -t "$HOME" nvim
+
+echo "📦 Instalando plugins de Zsh (zsh-autosuggestions, zsh-syntax-highlighting)..."
+ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
+fi
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting
+fi
 
 echo "🎉 ¡Configuración completada con éxito!"
 echo "Abre 'nvim' para que lazy.nvim comience a descargar los plugins. ¡Happy Hacking! ✨"

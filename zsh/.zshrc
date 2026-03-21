@@ -70,7 +70,7 @@ ZSH_THEME=""
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git sudo docker docker-compose z zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -114,3 +114,11 @@ autoload -U promptinit; promptinit
 prompt pure
 
 [ -f "/Users/dnqxxt/.ghcup/env" ] && . "/Users/dnqxxt/.ghcup/env" # ghcup-env
+
+# --- Nuevas Herramientas CLI ---
+eval "$(zoxide init zsh)"
+eval "$(fzf --zsh 2>/dev/null || fzf --bash 2>/dev/null)" # Atajos útiles de fzf
+alias ls="eza --icons"
+alias ll="eza -la --icons"
+alias cat="bat"
+# -------------------------------
