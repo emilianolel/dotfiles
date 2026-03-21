@@ -23,6 +23,10 @@ return {
         "rust_analyzer",
         "sqlls",
         "terraformls",
+        "marksman",
+        "yamlls",
+        "taplo",
+        "ltex",
       },
     },
     dependencies = {
@@ -57,6 +61,7 @@ return {
         "fourmolu", -- haskell formatter
         "sqlfluff", -- sql linter and formatter
         "tflint", -- terraform linter
+        "hadolint", -- docker linter
       },
     },
     dependencies = {

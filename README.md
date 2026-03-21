@@ -11,6 +11,8 @@ En este repositorio gestiono las configuraciones de mis herramientas favoritas: 
 ### 🐚 Zsh
 Mi shell del día a día. Configurado para ser productivo y estar lleno de información útil. 💡
 - **Perfiles:** Limpio, con auto-completado mejorado y gestión inteligente del historial.
+- **Plugins:** `zsh-autosuggestions` y `zsh-syntax-highlighting` para una experiencia interactiva sin fricción (estilo Fish).
+- **Herramientas Modernas:** `fzf` para búsqueda interactiva, `zoxide` (un `cd` más inteligente), `eza` (reemplazo de `ls` con íconos) y `bat` (un `cat` visual con sintaxis).
 
 ### 👻 Ghostty
 Mi emulador de terminal preferido por su rapidez y simplicidad. ⚡
@@ -29,7 +31,7 @@ Mi emulador de terminal preferido por su rapidez y simplicidad. ⚡
 **Plugins Destacados:**
 - 🔍 **Telescope:** Para encontrar archivos, buscar texto en todo el proyecto (grep) y más.
 - 📂 **Nvim-Tree:** Un explorador de archivos lateral muy amigable y fácil de usar.
-- 💡 **LSP & Mason:** Inteligencia de código (autocompletado, ir a definición, referencias) configurado con `mason.nvim` para instalar servidores fácilmente.
+- 💡 **LSP & Mason:** Inteligencia de código integral. Autocompletado, diagnósticos y formato para Web (JS/TS, HTML, Tailwind), C/C++, Rust, Python, Haskell, Markdown (`marksman`), YAML, TOML (`taplo`) y Docker (`hadolint`). ¡Además incluye `ltex` para revisión ortográfica y gramatical avanzada en documentos!
 - ✨ **Conform:** Para formatear el código automáticamente y mantenerlo siempre impecable.
 - 🚨 **Trouble:** ¡Encuentra y soluciona errores de diagnóstico en tu código en un panel lateral limpio!
 - ⌨️ **Which-Key:** Si alguna vez olvidas un atajo de teclado, ¡este plugin te muestra una pequeña trampa al presionar la tecla líder!
@@ -66,18 +68,18 @@ Si prefieres instalar las herramientas de manera manual antes de correr el scrip
 
 **🍏 Para macOS:**
 ```bash
-brew install stow neovim git zsh
+brew install stow neovim git zsh bat eza zoxide ripgrep fd fzf openjdk node
 ```
 
 **🐧 Para Linux (Ubuntu/Debian):**
 ```bash
 sudo apt update
-sudo apt install stow neovim git zsh
+sudo apt install -y stow neovim git zsh bat eza zoxide ripgrep fd-find fzf default-jre npm
 ```
 
 **🦅 Para Arch Linux:**
 ```bash
-sudo pacman -S stow neovim git zsh
+sudo pacman -S stow neovim git zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm
 ```
 
 ---
