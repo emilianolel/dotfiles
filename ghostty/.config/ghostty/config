@@ -1,0 +1,9 @@
+# Themes
+font-size = 15
+theme = "Monokai Classic"
+adjust-cell-height = 10%
+background-opacity = 0.96
+# mouse-hide-while-typing = true
+macos-titlebar-style = transparent
+# background = 1C2021
+# foreground = d4be98
