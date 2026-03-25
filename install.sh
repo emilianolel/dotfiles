@@ -33,10 +33,10 @@ install_dependencies() {
             exit 1
         fi
         brew update
-        brew install git stow neovim zsh bat eza zoxide ripgrep fd fzf openjdk node lazygit gcc tmux unzip zip yazi ffmpeg-full sevenzip jq poppler resvg imagemagick-full font-symbols-only-nerd-font chafa
+        brew install git stow neovim zsh bat eza zoxide ripgrep fd fzf openjdk node lazygit gcc tmux unzip zip yazi ffmpeg-full sevenzip jq poppler resvg imagemagick-full font-symbols-only-nerd-font
         brew link ffmpeg-full imagemagick-full -f --overwrite
     elif [ "$DISTRO" = "Arch" ]; then
-        sudo pacman -Syu --noconfirm git stow neovim zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm lazygit gcc make tmux unzip zip chafa
+        sudo pacman -Syu --noconfirm git stow neovim zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm lazygit gcc make tmux unzip zip
     elif [ "$DISTRO" = "Debian/Ubuntu" ]; then
         echo "🔧 Configurando repositorios adicionales para Ubuntu..."
         sudo apt update
@@ -52,7 +52,7 @@ install_dependencies() {
         
         sudo apt update
         # Instalar lo básico (sin lazygit por ahora)
-        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm build-essential tmux unzip zip libffi-dev libgmp-dev libncurses-dev libtinfo-dev zlib1g-dev chafa
+        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm build-essential tmux unzip zip libffi-dev libgmp-dev libncurses-dev libtinfo-dev zlib1g-dev
         
         # Instalar GHCup si no está presente (requerido para Haskell HLS en Mason)
         if ! command -v ghcup &> /dev/null; then
@@ -84,7 +84,7 @@ MISSING_PKGS=0
 # Añadir ~/.local/bin al PATH por si acaso (para bat y fd en Ubuntu)
 export PATH="$HOME/.local/bin:$PATH"
 
-for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi chafa; do
+for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi; do
     # En Ubuntu, bat y fd pueden llamarse batcat y fdfind
     CHECK_CMD=$cmd
     if [ "$DISTRO" = "Debian/Ubuntu" ]; then
@@ -104,7 +104,7 @@ if [ $MISSING_PKGS -eq 1 ]; then
     if [[ $REPLY =~ ^[Ss]$ ]]; then
         install_dependencies
         # Re-verificar después de instalar
-        for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi chafa; do
+        for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi; do
             CHECK_CMD=$cmd
             if [ "$DISTRO" = "Debian/Ubuntu" ]; then
                 if [ "$cmd" = "bat" ]; then CHECK_CMD="batcat"; fi
