@@ -37,8 +37,29 @@ install_dependencies() {
     elif [ "$DISTRO" = "Arch" ]; then
         sudo pacman -Syu --noconfirm git stow neovim zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm lazygit gcc make tmux
     elif [ "$DISTRO" = "Debian/Ubuntu" ]; then
+        echo "🔧 Configurando repositorios adicionales para Ubuntu..."
+        sudo apt update
+        sudo apt install -y software-properties-common wget gpg
+        
+        # Neovim PPA (para tener la versión más reciente)
+        sudo add-apt-repository -y ppa:neovim-ppa/unstable
+        
+        # Lazygit PPA
+        sudo add-apt-repository -y ppa:lazygit-team/release
+        
+        # Eza repository
+        sudo mkdir -p /etc/apt/keyrings
+        wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg 2>/dev/null || true
+        echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+        
         sudo apt update
         sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm lazygit build-essential tmux
+        
+        # Crear symlinks para bat y fd si es necesario (Ubuntu los nombra batcat y fdfind)
+        mkdir -p "$HOME/.local/bin"
+        [ -f /usr/bin/batcat ] && [ ! -f "$HOME/.local/bin/bat" ] && ln -s /usr/bin/batcat "$HOME/.local/bin/bat"
+        [ -f /usr/bin/fdfind ] && [ ! -f "$HOME/.local/bin/fd" ] && ln -s /usr/bin/fdfind "$HOME/.local/bin/fd"
+        export PATH="$HOME/.local/bin:$PATH"
     else
         echo "⚠️ Sistema no soportado para instalación automática."
         echo "Por favor, instala manualmente: git, stow, neovim, zsh."
@@ -48,8 +69,18 @@ install_dependencies() {
 
 # Verificar dependencias
 MISSING_PKGS=0
+# Añadir ~/.local/bin al PATH por si acaso (para bat y fd en Ubuntu)
+export PATH="$HOME/.local/bin:$PATH"
+
 for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux; do
-    if ! command -v $cmd &> /dev/null; then
+    # En Ubuntu, bat y fd pueden llamarse batcat y fdfind
+    CHECK_CMD=$cmd
+    if [ "$DISTRO" = "Debian/Ubuntu" ]; then
+        if [ "$cmd" = "bat" ]; then CHECK_CMD="batcat"; fi
+        if [ "$cmd" = "fd" ]; then CHECK_CMD="fdfind"; fi
+    fi
+
+    if ! command -v $CHECK_CMD &> /dev/null && ! command -v $cmd &> /dev/null; then
         echo "❌ Faltando: $cmd"
         MISSING_PKGS=1
     fi
@@ -60,6 +91,18 @@ if [ $MISSING_PKGS -eq 1 ]; then
     echo
     if [[ $REPLY =~ ^[Ss]$ ]]; then
         install_dependencies
+        # Re-verificar después de instalar
+        for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux; do
+            CHECK_CMD=$cmd
+            if [ "$DISTRO" = "Debian/Ubuntu" ]; then
+                if [ "$cmd" = "bat" ]; then CHECK_CMD="batcat"; fi
+                if [ "$cmd" = "fd" ]; then CHECK_CMD="fdfind"; fi
+            fi
+            if ! command -v $CHECK_CMD &> /dev/null && ! command -v $cmd &> /dev/null; then
+                echo "❌ Falló la instalación de: $cmd"
+                exit 1
+            fi
+        done
     else
         echo "👋 Por favor, instala las dependencias e inténtalo de nuevo."
         exit 1
@@ -87,7 +130,7 @@ if [[ $REPLY =~ ^[Ss]$ ]]; then
     elif [ "$DISTRO" = "Arch" ]; then
         sudo pacman -Syu --noconfirm k9s gitmux atuin rust
     elif [ "$DISTRO" = "Debian/Ubuntu" ]; then
-        curl -Lo /tmp/k9s.tar.gz "https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz" && tar -xzf /tmp/k9s.tar.gz -C /usr/local/bin k9s
+        curl -Lo /tmp/k9s.tar.gz "https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz" && sudo tar -xzf /tmp/k9s.tar.gz -C /usr/local/bin k9s
         curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
     fi
