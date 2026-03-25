@@ -52,7 +52,7 @@ install_dependencies() {
         
         sudo apt update
         # Instalar lo básico (sin lazygit por ahora)
-        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm build-essential tmux unzip zip libffi-dev libgmp-dev libncurses-dev libtinfo-dev zlib1g-dev
+        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm build-essential tmux unzip zip libffi-dev libgmp-dev libncurses-dev libtinfo-dev zlib1g-dev ffmpeg p7zip-full jq poppler-utils imagemagick
         
         # Instalar GHCup si no está presente (requerido para Haskell HLS en Mason)
         if ! command -v ghcup &> /dev/null; then
@@ -66,6 +66,15 @@ install_dependencies() {
         curl -Lo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
         tar xf /tmp/lazygit.tar.gz -C /tmp lazygit
         sudo install /tmp/lazygit /usr/local/bin/lazygit
+
+        # Instalar Yazi via binario (no está en repos oficiales de Ubuntu aún)
+        echo "📦 Instalando Yazi..."
+        # Obtenemos la versión más reciente sin el prefijo 'v'
+        YAZI_VERSION=$(curl -s "https://api.github.com/repos/sxyazi/yazi/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+        curl -Lo /tmp/yazi.zip "https://github.com/sxyazi/yazi/releases/latest/download/yazi-x86_64-unknown-linux-gnu.zip"
+        unzip -qo /tmp/yazi.zip -d /tmp
+        sudo install /tmp/yazi-x86_64-unknown-linux-gnu/yazi /usr/local/bin/yazi
+        sudo install /tmp/yazi-x86_64-unknown-linux-gnu/ya /usr/local/bin/ya
         
         # Crear symlinks para bat y fd si es necesario (Ubuntu los nombra batcat y fdfind)
         mkdir -p "$HOME/.local/bin"
