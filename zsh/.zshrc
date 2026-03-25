@@ -71,7 +71,7 @@ ZSH_THEME=""
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo docker docker-compose z zsh-autosuggestions zsh-syntax-highlighting aliases copypath copyfile jsontools python)
+plugins=(git sudo docker docker-compose zsh-autosuggestions zsh-syntax-highlighting aliases copypath copyfile jsontools python)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -141,7 +141,7 @@ prompt pure
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env
 
 # --- Nuevas Herramientas CLI ---
-eval "$(zoxide init zsh --cmd cd)"
+
 eval "$(fzf --zsh 2>/dev/null || fzf --bash 2>/dev/null)" # Atajos útiles de fzf
 alias ls="eza --icons"
 alias ll="eza -la --icons"
@@ -160,3 +160,5 @@ if command -v gcloud &>/dev/null; then
   fi
 fi
 # -------------------------------
+# Inicialización de herramientas recursivas (al final para evitar loops de alias)
+eval "$(zoxide init zsh --cmd cd)"
