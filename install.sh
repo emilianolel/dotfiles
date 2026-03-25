@@ -186,6 +186,23 @@ if [[ $REPLY =~ ^[Ss]$ ]]; then
     echo "✅ Stack de Data Engineering instalado. Abre Neovim y usa :MasonInstall jinja-lsp protols dockerls para instalar los LSPs correspondientes."
 fi
 
+# == Configuración de Zsh y Oh My Zsh ==
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "📦 Instalando Oh My Zsh (modo desatendido)..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+fi
+
+# Cambiar el shell predeterminado a zsh si no lo es
+ZSH_PATH=$(which zsh)
+if [ "$SHELL" != "$ZSH_PATH" ]; then
+    echo "🐚 Cambiando el shell predeterminado a Zsh..."
+    if [ "$DISTRO" = "macOS" ]; then
+        sudo chsh -s "$ZSH_PATH" "$USER"
+    else
+        sudo chsh -s "$ZSH_PATH" "$USER"
+    fi
+fi
+
 # Crear directorios si no existen
 mkdir -p "$HOME/.config"
 
