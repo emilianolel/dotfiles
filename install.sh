@@ -54,6 +54,14 @@ install_dependencies() {
         # Instalar lo básico (sin lazygit por ahora)
         sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm build-essential tmux unzip zip libffi-dev libgmp-dev libncurses-dev libtinfo-dev zlib1g-dev ffmpeg p7zip-full jq poppler-utils imagemagick
         
+        # Detectar arquitectura para binarios
+        ARCH=$(uname -m)
+        case "$ARCH" in
+            x86_64) ARCH_LAZY="x86_64"; ARCH_YAZI="x86_64-unknown-linux-gnu" ;;
+            aarch64|arm64) ARCH_LAZY="arm64"; ARCH_YAZI="aarch64-unknown-linux-gnu" ;;
+            *) echo "⚠️ Arquitectura $ARCH no soportada para instalación automática de binarios."; exit 1 ;;
+        esac
+
         # Instalar GHCup si no está presente (requerido para Haskell HLS en Mason)
         if ! command -v ghcup &> /dev/null; then
             echo "📦 Instalando GHCup (Haskell toolchain)..."
@@ -61,20 +69,23 @@ install_dependencies() {
         fi
         
         # Instalar Lazygit via binario (más confiable que el PPA)
-        echo "📦 Instalando Lazygit..."
+        echo "📦 Instalando Lazygit ($ARCH_LAZY)..."
         LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-        curl -Lo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+        curl -Lo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_${ARCH_LAZY}.tar.gz"
         tar xf /tmp/lazygit.tar.gz -C /tmp lazygit
         sudo install /tmp/lazygit /usr/local/bin/lazygit
 
         # Instalar Yazi via binario (no está en repos oficiales de Ubuntu aún)
-        echo "📦 Instalando Yazi..."
-        # Obtenemos la versión más reciente sin el prefijo 'v'
-        YAZI_VERSION=$(curl -s "https://api.github.com/repos/sxyazi/yazi/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-        curl -Lo /tmp/yazi.zip "https://github.com/sxyazi/yazi/releases/latest/download/yazi-x86_64-unknown-linux-gnu.zip"
+        echo "📦 Instalando Yazi ($ARCH_YAZI)..."
+        curl -Lo /tmp/yazi.zip "https://github.com/sxyazi/yazi/releases/latest/download/yazi-${ARCH_YAZI}.zip"
         unzip -qo /tmp/yazi.zip -d /tmp
-        sudo install /tmp/yazi-x86_64-unknown-linux-gnu/yazi /usr/local/bin/yazi
-        sudo install /tmp/yazi-x86_64-unknown-linux-gnu/ya /usr/local/bin/ya
+        if [ -d "/tmp/yazi-${ARCH_YAZI}" ]; then
+            sudo install "/tmp/yazi-${ARCH_YAZI}/yazi" /usr/local/bin/yazi
+            sudo install "/tmp/yazi-${ARCH_YAZI}/ya" /usr/local/bin/ya
+        else
+            echo "❌ Error: No se pudo encontrar el directorio extraído de Yazi."
+            exit 1
+        fi
         
         # Crear symlinks para bat y fd si es necesario (Ubuntu los nombra batcat y fdfind)
         mkdir -p "$HOME/.local/bin"
@@ -93,7 +104,7 @@ MISSING_PKGS=0
 # Añadir ~/.local/bin al PATH por si acaso (para bat y fd en Ubuntu)
 export PATH="$HOME/.local/bin:$PATH"
 
-for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi; do
+for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi lazygit; do
     # En Ubuntu, bat y fd pueden llamarse batcat y fdfind
     CHECK_CMD=$cmd
     if [ "$DISTRO" = "Debian/Ubuntu" ]; then
@@ -113,7 +124,7 @@ if [ $MISSING_PKGS -eq 1 ]; then
     if [[ $REPLY =~ ^[Ss]$ ]]; then
         install_dependencies
         # Re-verificar después de instalar
-        for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi; do
+        for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi lazygit; do
             CHECK_CMD=$cmd
             if [ "$DISTRO" = "Debian/Ubuntu" ]; then
                 if [ "$cmd" = "bat" ]; then CHECK_CMD="batcat"; fi
