@@ -33,7 +33,8 @@ install_dependencies() {
             exit 1
         fi
         brew update
-        brew install git stow neovim zsh bat eza zoxide ripgrep fd fzf openjdk node lazygit gcc tmux unzip zip
+        brew install git stow neovim zsh bat eza zoxide ripgrep fd fzf openjdk node lazygit gcc tmux unzip zip yazi ffmpeg-full sevenzip jq poppler resvg imagemagick-full font-symbols-only-nerd-font
+        brew link ffmpeg-full imagemagick-full -f --overwrite
     elif [ "$DISTRO" = "Arch" ]; then
         sudo pacman -Syu --noconfirm git stow neovim zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm lazygit gcc make tmux unzip zip
     elif [ "$DISTRO" = "Debian/Ubuntu" ]; then
@@ -83,7 +84,7 @@ MISSING_PKGS=0
 # Añadir ~/.local/bin al PATH por si acaso (para bat y fd en Ubuntu)
 export PATH="$HOME/.local/bin:$PATH"
 
-for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux; do
+for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi; do
     # En Ubuntu, bat y fd pueden llamarse batcat y fdfind
     CHECK_CMD=$cmd
     if [ "$DISTRO" = "Debian/Ubuntu" ]; then
@@ -103,7 +104,7 @@ if [ $MISSING_PKGS -eq 1 ]; then
     if [[ $REPLY =~ ^[Ss]$ ]]; then
         install_dependencies
         # Re-verificar después de instalar
-        for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux; do
+        for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi; do
             CHECK_CMD=$cmd
             if [ "$DISTRO" = "Debian/Ubuntu" ]; then
                 if [ "$cmd" = "bat" ]; then CHECK_CMD="batcat"; fi
@@ -174,6 +175,9 @@ stow -v -t "$HOME" nvim
 
 echo "💻 Enlazando configuración de Tmux..."
 stow -v -t "$HOME" tmux
+
+echo "🦅 Enlazando configuración de Yazi..."
+stow -v -t "$HOME" yazi
 
 echo "📦 Instalando plugins de Zsh (zsh-autosuggestions, zsh-syntax-highlighting)..."
 ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
