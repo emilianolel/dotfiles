@@ -2,7 +2,7 @@
 
 ¡Bienvenido/a a mi repositorio de dotfiles! 🚀 Aquí encontrarás las configuraciones que utilizo en mi día a día para que mi entorno de desarrollo sea lo más productivo, rápido y estético posible. 🎨💻
 
-En este repositorio gestiono las configuraciones de mis herramientas favoritas: **Neovim** 📝, **Zsh** 🐚 y **Ghostty** 👻.
+En este repositorio gestiono las configuraciones de mis herramientas favoritas: **Neovim** 📝, **Zsh** 🐚, **Ghostty** 👻 y **Yazi** 🦅.
 
 ---
 
@@ -23,6 +23,12 @@ Mi emulador de terminal preferido por su rapidez y simplicidad. ⚡
 - **Tema:** 🎨 Monokai Classic
 - **Tipografía:** 🔤 Tamaño 15
 - **Estética:** ✨ Transparencia ligera (`0.96`) para ver el fondo sin perder el foco en el código, y altura de celdas ajustada (`10%`) para mayor legibilidad. En macOS, la barra de título es transparente para un look más limpio. 🍏
+
+### 🦅 Yazi
+Un gestor de archivos para la terminal extremadamente rápido, escrito en Rust. ⚡
+- **Vista Previa:** 🖼️ Soporte para imágenes, videos, PDF y resaltado de sintaxis en código.
+- **Navegación:** ⌨️ Atajos estilo Vim (`h`, `j`, `k`, `l`) para una navegación fluida.
+- **Herramientas:** Integración con `fzf` para saltos rápidos y `zoxide` para navegar por directorios frecuentes.
 
 ### 🪟 Tmux
 Multiplexador de terminal configurado para integrarse perfectamente con Ghostty y Neovim. 🔄
@@ -95,13 +101,13 @@ Si prefieres instalar las herramientas de manera manual antes de correr el scrip
 
 **🍏 Para macOS:**
 ```bash
-brew install stow neovim git zsh bat eza zoxide ripgrep fd fzf openjdk node lazygit gcc tmux k9s gitmux atuin rust
+brew install stow neovim git zsh bat eza zoxide ripgrep fd fzf openjdk node lazygit gcc tmux yazi ffmpeg-full sevenzip jq poppler resvg imagemagick-full font-symbols-only-nerd-font k9s gitmux atuin rust
 ```
 
 **🐧 Para Linux (Ubuntu/Debian):**
 ```bash
 sudo apt update
-sudo apt install -y stow neovim git zsh bat eza zoxide ripgrep fd-find fzf default-jre npm lazygit build-essential tmux
+sudo apt install -y stow neovim git zsh bat eza zoxide ripgrep fd-find fzf default-jre npm lazygit build-essential tmux unzip zip libffi-dev libgmp-dev libncurses-dev libtinfo-dev zlib1g-dev
 ```
 
 **🦅 Para Arch Linux:**

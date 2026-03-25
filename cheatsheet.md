@@ -125,6 +125,49 @@ Este documento recopila todos los atajos de teclado configurados en tu entorno d
 
 ---
 
+## 🦅 Yazi (Terminal File Manager)
+
+### Navegación
+| Atajo | Acción | Modo |
+|---|---|---|
+| `k` / `j` | Subir / Bajar en la lista de archivos | Normal |
+| `h` / `l` | Regresar al padre / Entrar al directorio o abrir | Normal |
+| `g g` | Ir al principio del directorio | Normal |
+| `G` | Ir al final del directorio | Normal |
+| `H` / `L` | Historial: Atrás / Adelante | Normal |
+| `Ctrl + u` / `Ctrl + d` | Subir / Bajar media página | Normal |
+
+### Operaciones de Archivo
+| Atajo | Acción | Modo |
+|---|---|---|
+| `<Space>` | Alternar selección del archivo actual | Normal |
+| `v` | Entrar en modo visual (selección múltiple) | Normal |
+| `o` / `Enter` | Abrir archivos seleccionados | Normal |
+| `y` | Copiar (Yank) | Normal |
+| `x` | Cortar (Yank --cut) | Normal |
+| `p` | Pegar archivos | Normal |
+| `P` | Pegar y sobrescribir si existen | Normal |
+| `d` | Enviar a la papelera | Normal |
+| `D` | Eliminar permanentemente | Normal |
+| `a` | Crear nuevo archivo o carpeta (terminar con `/` para carpeta) | Normal |
+| `r` | Renombrar archivo | Normal |
+| `.` | Alternar visibilidad de archivos ocultos | Normal |
+| `f` | Filtrar archivos en vivo | Normal |
+| `c c` | Copiar la ruta completa (path) | Normal |
+
+### Búsqueda y Saltos
+| Atajo | Acción | Modo |
+|---|---|---|
+| `s` | Buscar archivos por nombre vía `fd` | Normal |
+| `S` | Buscar contenido en archivos vía `ripgrep` | Normal |
+| `z` | Saltar a un archivo/carpeta vía `fzf` | Normal |
+| `Z` | Saltar a un directorio frecuente vía `zoxide` | Normal |
+| `/` | Buscar siguiente (estilo Vim) | Normal |
+| `?` | Buscar anterior (estilo Vim) | Normal |
+| `n` / `N` | Siguiente / Anterior resultado de búsqueda | Normal |
+
+---
+
 ## 🪟 Tmux (Gestión de Terminales)
 > **Prefijo**: `Ctrl + Space` (mapeado desde el default `Ctrl + B`)
 
