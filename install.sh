@@ -24,6 +24,21 @@ esac
 
 echo "💻 Sistema detectado: $DISTRO"
 
+# Configuración de robustez
+set -e # Salir en caso de error
+trap "echo '⚠️ El script falló. Revisa los mensajes anteriores.'; exit 1" ERR
+
+# Asegurar que ~/.local/bin está en el PATH durante la ejecución
+export PATH="$HOME/.local/bin:$PATH"
+
+# Verificación de herramientas básicas antes de empezar
+for tool in curl git unzip tar; do
+    if ! command -v $tool &> /dev/null; then
+        echo "❌ Error: $tool no está instalado. Instálalo para continuar."
+        exit 1
+    fi
+done
+
 # Función para instalar dependencias según el SO
 install_dependencies() {
     echo "📦 Instalando dependencias necesarias (git, stow, neovim, zsh)..."
@@ -52,7 +67,7 @@ install_dependencies() {
         
         sudo apt update
         # Instalar lo básico (sin lazygit por ahora)
-        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm build-essential tmux unzip zip libffi-dev libgmp-dev libncurses-dev libtinfo-dev zlib1g-dev ffmpeg p7zip-full jq poppler-utils imagemagick python3-pip python3-venv
+        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm build-essential tmux unzip zip libffi-dev libgmp-dev libncurses-dev libtinfo-dev zlib1g-dev ffmpeg p7zip-full jq poppler-utils imagemagick python3-pip python3-venv pkg-config
         
         # Detectar arquitectura para binarios
         ARCH=$(uname -m)
@@ -75,13 +90,15 @@ install_dependencies() {
         tar xf /tmp/lazygit.tar.gz -C /tmp lazygit
         sudo install /tmp/lazygit /usr/local/bin/lazygit
 
-        # Instalar Yazi via binario (no está en repos oficiales de Ubuntu aún)
+        # Instalar Yazi via binario
         echo "📦 Instalando Yazi ($ARCH_YAZI)..."
-        curl -Lo /tmp/yazi.zip "https://github.com/sxyazi/yazi/releases/latest/download/yazi-${ARCH_YAZI}.zip"
-        unzip -qo /tmp/yazi.zip -d /tmp
+        YAZI_ZIP="/tmp/yazi_${ARCH_YAZI}.zip"
+        curl -Lo "$YAZI_ZIP" "https://github.com/sxyazi/yazi/releases/latest/download/yazi-${ARCH_YAZI}.zip"
+        unzip -qo "$YAZI_ZIP" -d /tmp
         if [ -d "/tmp/yazi-${ARCH_YAZI}" ]; then
             sudo install "/tmp/yazi-${ARCH_YAZI}/yazi" /usr/local/bin/yazi
             sudo install "/tmp/yazi-${ARCH_YAZI}/ya" /usr/local/bin/ya
+            rm -rf "/tmp/yazi-${ARCH_YAZI}" "$YAZI_ZIP"
         else
             echo "❌ Error: No se pudo encontrar el directorio extraído de Yazi."
             exit 1
