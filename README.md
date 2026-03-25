@@ -58,7 +58,7 @@ Herramientas especializadas para flujos de trabajo de Data Engineering, diseñad
 
 **Plugins Destacados:**
 - 🔍 **Telescope:** Para encontrar archivos, buscar texto en todo el proyecto (grep) y más.
-- 📂 **Nvim-Tree:** Un explorador de archivos lateral muy amigable y fácil de usar.
+- 📂 **Yazi (Yazi.nvim):** Un explorador de archivos extremadamente potente y rápido que se abre en una ventana flotante. Reemplaza al tradicional explorador lateral para darte todas las funcionalidades de Yazi directamente dentro de Neovim. ✨
 - 💡 **LSP & Mason:** Inteligencia de código integral. Autocompletado, diagnósticos y formato para Web (JS/TS, HTML, Tailwind), C/C++, Rust, Python, Haskell, Markdown (`marksman`), YAML, TOML (`taplo`) y Docker (`hadolint`). ¡Además incluye `ltex` para revisión ortográfica y gramatical avanzada en documentos!
 - 🌳 **Treesitter:** Resaltado de sintaxis moderno, rápido y extremadamente preciso.
 - 🌈 **Lualine:** Barra de estado hermosa y minimalista.

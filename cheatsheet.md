@@ -34,13 +34,12 @@ Este documento recopila todos los atajos de teclado configurados en tu entorno d
 
 ## 🛠️ Plugins Destacados
 
-### 📁 Nvim-Tree (Explorador de Archivos)
+### 📂 Yazi.nvim (Explorador de Archivos)
 | Atajo | Acción | Modo |
 |---|---|---|
-| `<leader>ee` | Abrir / Cerrar el explorador de archivos | Normal |
-| `<leader>ef` | Abrir explorador enfocado en el archivo actual | Normal |
-| `<leader>ec` | Colapsar las carpetas del explorador | Normal |
-| `<leader>er` | Recargar el explorador de archivos | Normal |
+| `<leader>ee` | Abrir / Cerrar Yazi en el directorio actual (CWD) | Normal |
+| `<leader>ef` | Abrir Yazi enfocado en el archivo actual | Normal |
+| `<leader>et` | Abrir Yazi en una nueva pestaña | Normal |
 
 ### 🔍 Telescope (Búsqueda Fuzzy)
 | Atajo | Acción | Modo |
