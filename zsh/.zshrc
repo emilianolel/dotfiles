@@ -137,7 +137,7 @@ export PATH="/Users/dnqxxt/.antigravity/antigravity/bin:$PATH"
 autoload -U promptinit; promptinit
 prompt pure
 
-[ -f "/Users/dnqxxt/.ghcup/env" ] && . "/Users/dnqxxt/.ghcup/env" # ghcup-env
+[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env
 
 # --- Nuevas Herramientas CLI ---
 eval "$(zoxide init zsh --cmd cd)"

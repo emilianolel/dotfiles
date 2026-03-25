@@ -51,7 +51,13 @@ install_dependencies() {
         
         sudo apt update
         # Instalar lo básico (sin lazygit por ahora)
-        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm build-essential tmux unzip zip
+        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm build-essential tmux unzip zip libffi-dev libgmp-dev libncurses-dev libtinfo-dev zlib1g-dev
+        
+        # Instalar GHCup si no está presente (requerido para Haskell HLS en Mason)
+        if ! command -v ghcup &> /dev/null; then
+            echo "📦 Instalando GHCup (Haskell toolchain)..."
+            curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 BOOTSTRAP_HASKELL_INSTALL_HLS=1 bash
+        fi
         
         # Instalar Lazygit via binario (más confiable que el PPA)
         echo "📦 Instalando Lazygit..."
