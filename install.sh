@@ -52,7 +52,7 @@ install_dependencies() {
         
         sudo apt update
         # Instalar lo básico (sin lazygit por ahora)
-        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm build-essential tmux unzip zip libffi-dev libgmp-dev libncurses-dev libtinfo-dev zlib1g-dev ffmpeg p7zip-full jq poppler-utils imagemagick
+        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm build-essential tmux unzip zip libffi-dev libgmp-dev libncurses-dev libtinfo-dev zlib1g-dev ffmpeg p7zip-full jq poppler-utils imagemagick python3-pip python3-venv
         
         # Detectar arquitectura para binarios
         ARCH=$(uname -m)
