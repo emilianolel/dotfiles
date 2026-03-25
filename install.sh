@@ -33,9 +33,9 @@ install_dependencies() {
             exit 1
         fi
         brew update
-        brew install git stow neovim zsh bat eza zoxide ripgrep fd fzf openjdk node lazygit gcc tmux
+        brew install git stow neovim zsh bat eza zoxide ripgrep fd fzf openjdk node lazygit gcc tmux unzip zip
     elif [ "$DISTRO" = "Arch" ]; then
-        sudo pacman -Syu --noconfirm git stow neovim zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm lazygit gcc make tmux
+        sudo pacman -Syu --noconfirm git stow neovim zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm lazygit gcc make tmux unzip zip
     elif [ "$DISTRO" = "Debian/Ubuntu" ]; then
         echo "🔧 Configurando repositorios adicionales para Ubuntu..."
         sudo apt update
@@ -51,7 +51,7 @@ install_dependencies() {
         
         sudo apt update
         # Instalar lo básico (sin lazygit por ahora)
-        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm build-essential tmux
+        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm build-essential tmux unzip zip
         
         # Instalar Lazygit via binario (más confiable que el PPA)
         echo "📦 Instalando Lazygit..."
