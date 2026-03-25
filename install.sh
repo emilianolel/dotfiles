@@ -39,13 +39,10 @@ install_dependencies() {
     elif [ "$DISTRO" = "Debian/Ubuntu" ]; then
         echo "🔧 Configurando repositorios adicionales para Ubuntu..."
         sudo apt update
-        sudo apt install -y software-properties-common wget gpg
+        sudo apt install -y software-properties-common wget gpg curl
         
         # Neovim PPA (para tener la versión más reciente)
-        sudo add-apt-repository -y ppa:neovim-ppa/unstable
-        
-        # Lazygit PPA
-        sudo add-apt-repository -y ppa:lazygit-team/release
+        sudo add-apt-repository -y ppa:neovim-ppa/unstable || true
         
         # Eza repository
         sudo mkdir -p /etc/apt/keyrings
@@ -53,7 +50,15 @@ install_dependencies() {
         echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
         
         sudo apt update
-        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm lazygit build-essential tmux
+        # Instalar lo básico (sin lazygit por ahora)
+        sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm build-essential tmux
+        
+        # Instalar Lazygit via binario (más confiable que el PPA)
+        echo "📦 Instalando Lazygit..."
+        LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+        curl -Lo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+        tar xf /tmp/lazygit.tar.gz -C /tmp lazygit
+        sudo install /tmp/lazygit /usr/local/bin/lazygit
         
         # Crear symlinks para bat y fd si es necesario (Ubuntu los nombra batcat y fdfind)
         mkdir -p "$HOME/.local/bin"
