@@ -39,11 +39,11 @@ install_dependencies() {
     case "$ARCH" in
     x86_64)
         ARCH_LAZY="x86_64"
-        ARCH_YAZI="x86_64-unknown-linux-gnu"
+        ARCH_YAZI="x86_64-unknown-linux-musl"
         ;;
     aarch64 | arm64)
         ARCH_LAZY="arm64"
-        ARCH_YAZI="aarch64-unknown-linux-gnu"
+        ARCH_YAZI="aarch64-unknown-linux-musl"
         ;;
     *)
         echo "⚠️ Arquitectura $ARCH no soportada para instalación automática de binarios."
