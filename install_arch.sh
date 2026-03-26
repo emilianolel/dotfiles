@@ -71,9 +71,29 @@ fi
 # Crear directorios
 mkdir -p "$HOME/.config"
 
+# Función para manejar conflictos de stow
+handle_stow_conflicts() {
+    local target=$1
+    if [ -f "$HOME/$target" ] && [ ! -L "$HOME/$target" ]; then
+        echo "⚠️  Detectado $target existente (no es un symlink). Moviéndolo a $target.bak..."
+        mv "$HOME/$target" "$HOME/$target.bak"
+    elif [ -d "$HOME/$target" ] && [ ! -L "$HOME/$target" ] && [ "$target" != ".config" ]; then
+        echo "⚠️  Detectado directorio $target existente. Moviéndolo a $target.bak..."
+        mv "$HOME/$target" "$HOME/$target.bak"
+    fi
+}
+
 # Stow
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$DOTFILES_DIR" || exit
+
+echo "💚 Preparando el entorno para Stow..."
+handle_stow_conflicts ".zshrc"
+handle_stow_conflicts ".zprofile"
+handle_stow_conflicts ".tmux.conf"
+handle_stow_conflicts ".config/nvim"
+handle_stow_conflicts ".config/yazi"
+handle_stow_conflicts ".config/ghostty"
 
 echo "👻 Enlazando configuración de Ghostty..."
 stow -v -t "$HOME" ghostty
