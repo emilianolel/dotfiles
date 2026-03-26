@@ -10,8 +10,8 @@ trap "echo '⚠️ El script falló. Revisa los mensajes anteriores.'; exit 1" E
 export PATH="$HOME/.local/bin:$PATH"
 
 # Verificación de herramientas básicas antes de empezar
-for tool in curl git unzip tar; do
-    if ! command -v $tool &> /dev/null; then
+for tool in curl git tar; do
+    if ! command -v $tool &>/dev/null; then
         echo "❌ Error: $tool no está instalado. Instálalo para continuar."
         exit 1
     fi
@@ -22,32 +22,41 @@ install_dependencies() {
     echo "📦 Instalando dependencias necesarias via apt..."
     sudo apt update
     sudo apt install -y software-properties-common wget gpg curl
-    
+
     # Neovim PPA
     sudo add-apt-repository -y ppa:neovim-ppa/unstable || true
-    
+
     # Eza repository
     sudo mkdir -p /etc/apt/keyrings
     wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg 2>/dev/null || true
     echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
-    
+
     sudo apt update
     sudo apt install -y git stow neovim zsh bat eza zoxide ripgrep fd-find fzf default-jre npm build-essential tmux unzip zip libffi-dev libgmp-dev libncurses-dev libtinfo-dev zlib1g-dev ffmpeg p7zip-full jq poppler-utils imagemagick python3-pip python3-venv pkg-config
-    
+
     # Detectar arquitectura para binarios
     ARCH=$(uname -m)
     case "$ARCH" in
-        x86_64) ARCH_LAZY="x86_64"; ARCH_YAZI="x86_64-unknown-linux-gnu" ;;
-        aarch64|arm64) ARCH_LAZY="arm64"; ARCH_YAZI="aarch64-unknown-linux-gnu" ;;
-        *) echo "⚠️ Arquitectura $ARCH no soportada para instalación automática de binarios."; exit 1 ;;
+    x86_64)
+        ARCH_LAZY="x86_64"
+        ARCH_YAZI="x86_64-unknown-linux-gnu"
+        ;;
+    aarch64 | arm64)
+        ARCH_LAZY="arm64"
+        ARCH_YAZI="aarch64-unknown-linux-gnu"
+        ;;
+    *)
+        echo "⚠️ Arquitectura $ARCH no soportada para instalación automática de binarios."
+        exit 1
+        ;;
     esac
 
     # GHCup
-    if ! command -v ghcup &> /dev/null; then
+    if ! command -v ghcup &>/dev/null; then
         echo "📦 Instalando GHCup (Haskell toolchain)..."
         curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 BOOTSTRAP_HASKELL_INSTALL_HLS=1 bash
     fi
-    
+
     # Lazygit
     echo "📦 Instalando Lazygit ($ARCH_LAZY)..."
     LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
@@ -68,7 +77,7 @@ install_dependencies() {
         echo "❌ Error: No se pudo encontrar el directorio extraído de Yazi."
         exit 1
     fi
-    
+
     # Symlinks para bat y fd
     mkdir -p "$HOME/.local/bin"
     [ -f /usr/bin/batcat ] && [ ! -f "$HOME/.local/bin/bat" ] && ln -s /usr/bin/batcat "$HOME/.local/bin/bat"
@@ -84,7 +93,7 @@ for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi lazygit unzip; do
     if [ "$cmd" = "bat" ]; then CHECK_CMD="batcat"; fi
     if [ "$cmd" = "fd" ]; then CHECK_CMD="fdfind"; fi
 
-    if ! command -v $CHECK_CMD &> /dev/null && ! command -v $cmd &> /dev/null; then
+    if ! command -v $CHECK_CMD &>/dev/null && ! command -v $cmd &>/dev/null; then
         echo "❌ Faltando: $cmd"
         MISSING_PKGS=1
     fi
