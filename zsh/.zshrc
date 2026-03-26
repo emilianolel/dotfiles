@@ -1,5 +1,5 @@
-# if you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+# Path configuration
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 export PATH=$HOME/.local/share/nvim/mason/bin:$HOME/.cargo/bin:$PATH
 
 # Path to your Oh My Zsh installation.
@@ -71,7 +71,7 @@ ZSH_THEME=""
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo docker docker-compose zsh-autosuggestions zsh-syntax-highlighting aliases copypath copyfile jsontools python)
+plugins=(git sudo docker docker-compose zsh-autosuggestions zsh-syntax-highlighting copypath copyfile jsontools python)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -130,8 +130,7 @@ alias va='source .venv/bin/activate 2>/dev/null || source venv/bin/activate 2>/d
 alias vd='deactivate'
 alias vmk='python3 -m venv .venv && source .venv/bin/activate'
 
-# Added by Antigravity
-export PATH="/Users/dnqxxt/.antigravity/antigravity/bin:$PATH"
+
 
 
 # .zshrc
@@ -147,7 +146,7 @@ alias ls="eza --icons"
 alias ll="eza -la --icons"
 alias cat="bat"
 
-# Atuin: historial inteligente de comandos (reemplaza fzf+Ctrl+R)
+# Atuin: historial inteligente de comandos
 if command -v atuin &>/dev/null; then
   eval "$(atuin init zsh)"
 fi
@@ -161,7 +160,6 @@ if command -v gcloud &>/dev/null; then
 fi
 # -------------------------------
 # Inicialización de herramientas recursivas (al final para evitar loops de alias)
-eval "$(zoxide init zsh --cmd cd)"
-
-# Added by Antigravity
-export PATH="/Users/dnqxxt/.antigravity/antigravity/bin:$PATH"
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init zsh --cmd cd)"
+fi
