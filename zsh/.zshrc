@@ -159,7 +159,7 @@ if command -v gcloud &>/dev/null; then
   fi
 fi
 # -------------------------------
-# Inicialización de herramientas recursivas (al final para evitar loops de alias)
+# Inicialización de herramientas recursivas
 if command -v zoxide &>/dev/null; then
-  eval "$(zoxide init zsh --cmd cd)"
+  eval "$(zoxide init zsh)"
 fi
