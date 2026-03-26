@@ -133,9 +133,9 @@ alias vmk='python3 -m venv .venv && source .venv/bin/activate'
 
 
 
-# .zshrc
+# Prompt adam2
 autoload -U promptinit; promptinit
-prompt pure
+prompt adam2
 
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env
 

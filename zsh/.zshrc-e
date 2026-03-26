@@ -111,4 +111,4 @@ export PATH="/Users/dnqxxt/.antigravity/antigravity/bin:$PATH"
 
 # .zshrc
 autoload -U promptinit; promptinit
-prompt pure
+prompt adam2
