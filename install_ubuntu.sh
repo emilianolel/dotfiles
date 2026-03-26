@@ -79,7 +79,7 @@ install_dependencies() {
 # Verificar dependencias
 echo "🔍 Verificando dependencias..."
 MISSING_PKGS=0
-for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi lazygit; do
+for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi lazygit unzip; do
     CHECK_CMD=$cmd
     if [ "$cmd" = "bat" ]; then CHECK_CMD="batcat"; fi
     if [ "$cmd" = "fd" ]; then CHECK_CMD="fdfind"; fi

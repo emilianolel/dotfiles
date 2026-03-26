@@ -32,7 +32,7 @@ install_dependencies() {
 # Verificar dependencias
 echo "🔍 Verificando dependencias..."
 MISSING_PKGS=0
-for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi lazygit; do
+for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi lazygit unzip; do
     if ! command -v $cmd &> /dev/null; then
         echo "❌ Faltando: $cmd"
         MISSING_PKGS=1
