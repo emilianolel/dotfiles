@@ -57,6 +57,14 @@ install_dependencies() {
         curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 BOOTSTRAP_HASKELL_INSTALL_HLS=1 bash
     fi
 
+    # Rust (Cargo)
+    if ! command -v cargo &> /dev/null; then
+        echo "📦 Instalando Rust y Cargo via rustup..."
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        # Cargar entorno de cargo para la sesión actual del script
+        source "$HOME/.cargo/env"
+    fi
+    
     # Lazygit
     echo "📦 Instalando Lazygit ($ARCH_LAZY)..."
     LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
@@ -87,8 +95,12 @@ install_dependencies() {
 
 # Verificar dependencias
 echo "🔍 Verificando dependencias..."
+# Asegurar que el path de cargo esté presente por si acaso se acaba de instalar
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+
 MISSING_PKGS=0
-for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi lazygit unzip; do
+for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi lazygit unzip cargo; do
     CHECK_CMD=$cmd
     if [ "$cmd" = "bat" ]; then CHECK_CMD="batcat"; fi
     if [ "$cmd" = "fd" ]; then CHECK_CMD="fdfind"; fi
@@ -113,13 +125,12 @@ else
 fi
 
 # Instalación opcional de Data Engineering stack
-read -p "☁️ ¿Deseas instalar el stack de Data Engineering / GCP (k9s, atuin, gitmux, rust)? (s/N) " -n 1 -r
+read -p "☁️ ¿Deseas instalar el stack de Data Engineering / GCP (k9s, atuin, gitmux)? (s/N) " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Ss]$ ]]; then
     echo "📦 Instalando herramientas de Data Engineering y GCP..."
     curl -Lo /tmp/k9s.tar.gz "https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz" && sudo tar -xzf /tmp/k9s.tar.gz -C /usr/local/bin k9s
     curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
     echo "✅ Stack de Data Engineering instalado. Abre Neovim y usa :MasonInstall jinja-lsp protols dockerls para instalar los LSPs correspondientes."
 fi
 

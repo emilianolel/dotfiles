@@ -20,13 +20,13 @@ done
 # Función para instalar dependencias
 install_dependencies() {
     echo "📦 Instalando dependencias necesarias via pacman..."
-    sudo pacman -Syu --noconfirm git stow neovim zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm lazygit gcc make tmux unzip zip
+    sudo pacman -Syu --noconfirm git stow neovim zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm lazygit gcc make tmux unzip zip rust
 }
 
 # Verificar dependencias
 echo "🔍 Verificando dependencias..."
 MISSING_PKGS=0
-for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi lazygit unzip; do
+for cmd in git stow nvim zsh rg fzf bat eza zoxide tmux yazi lazygit unzip cargo; do
     if ! command -v $cmd &> /dev/null; then
         echo "❌ Faltando: $cmd"
         MISSING_PKGS=1
@@ -47,11 +47,11 @@ else
 fi
 
 # Instalación opcional de Data Engineering stack
-read -p "☁️ ¿Deseas instalar el stack de Data Engineering / GCP (k9s, atuin, gitmux, rust)? (s/N) " -n 1 -r
+read -p "☁️ ¿Deseas instalar el stack de Data Engineering / GCP (k9s, atuin, gitmux)? (s/N) " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Ss]$ ]]; then
     echo "📦 Instalando herramientas de Data Engineering y GCP..."
-    sudo pacman -Syu --noconfirm k9s gitmux atuin rust
+    sudo pacman -Syu --noconfirm k9s gitmux atuin
     echo "✅ Stack de Data Engineering instalado. Abre Neovim y usa :MasonInstall jinja-lsp protols dockerls para instalar los LSPs correspondientes."
 fi
 
