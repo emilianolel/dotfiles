@@ -162,3 +162,6 @@ fi
 # -------------------------------
 # Inicialización de herramientas recursivas (al final para evitar loops de alias)
 eval "$(zoxide init zsh --cmd cd)"
+
+# Added by Antigravity
+export PATH="/Users/dnqxxt/.antigravity/antigravity/bin:$PATH"
