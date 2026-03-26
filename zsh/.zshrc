@@ -161,5 +161,9 @@ fi
 # -------------------------------
 # Inicialización de herramientas recursivas
 if command -v zoxide &>/dev/null; then
-  eval "$(zoxide init zsh)"
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    eval "$(zoxide init zsh --cmd cd)"
+  else
+    eval "$(zoxide init zsh)"
+  fi
 fi
