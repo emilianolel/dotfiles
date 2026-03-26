@@ -21,6 +21,11 @@ done
 install_dependencies() {
     echo "📦 Instalando dependencias necesarias via pacman..."
     sudo pacman -Syu --noconfirm git stow neovim zsh bat eza zoxide ripgrep fd fzf jre-openjdk npm lazygit gcc make tmux unzip zip rust
+    # Asegurar que Rust esté en la última versión estable si se usa rustup
+    if command -v rustup &>/dev/null; then
+        rustup update stable
+        rustup default stable
+    fi
 }
 
 # Verificar dependencias

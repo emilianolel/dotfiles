@@ -58,12 +58,15 @@ install_dependencies() {
     fi
 
     # Rust (Cargo)
-    if ! command -v cargo &> /dev/null; then
+    if ! command -v rustup &>/dev/null; then
         echo "📦 Instalando Rust y Cargo via rustup..."
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-        # Cargar entorno de cargo para la sesión actual del script
-        source "$HOME/.cargo/env"
+    else
+        echo "🔄 Actualizando Rust a la última versión estable..."
+        rustup update stable
     fi
+    source "$HOME/.cargo/env"
+    rustup default stable
     
     # Lazygit
     echo "📦 Instalando Lazygit ($ARCH_LAZY)..."

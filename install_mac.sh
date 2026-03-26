@@ -27,6 +27,11 @@ install_dependencies() {
     brew update
     brew install git stow neovim zsh bat eza zoxide ripgrep fd fzf openjdk node lazygit gcc tmux unzip zip yazi ffmpeg-full sevenzip jq poppler resvg imagemagick-full font-symbols-only-nerd-font rust
     brew link ffmpeg-full imagemagick-full -f --overwrite
+    # Asegurar que Rust esté en la última versión estable
+    if command -v rustup &>/dev/null; then
+        rustup update stable
+        rustup default stable
+    fi
 }
 
 # Verificar dependencias
